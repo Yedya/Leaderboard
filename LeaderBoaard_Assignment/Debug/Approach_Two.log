@@ -1,17 +1,47 @@
-﻿Build started 2/9/2018 9:48:38 AM.
-     1>Project "C:\Users\Conor\documents\visual studio 2012\Projects\Approach_Two\Approach_Two\Approach_Two.vcxproj" on node 2 (Build target(s)).
+﻿Build started 2/25/2018 3:59:34 PM.
+     1>Project "C:\Users\Conor\Documents\Visual Studio 2012\Projects\LeaderBoaard_Assignment\LeaderBoaard_Assignment\Approach_Two.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         D:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt Source.cpp leaderBoard.cpp
+         D:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt leaderBoard.cpp
          leaderBoard.cpp
-         Source.cpp
-         Generating Code...
+     1>c:\users\conor\documents\visual studio 2012\projects\leaderboaard_assignment\leaderboaard_assignment\leaderboard.h(32): warning C4099: 'Node' : type name first seen using 'class' now seen using 'struct'
+                 c:\users\conor\documents\visual studio 2012\projects\leaderboaard_assignment\leaderboaard_assignment\leaderboard.h(11) : see declaration of 'Node'
+                 c:\users\conor\documents\visual studio 2012\projects\leaderboaard_assignment\leaderboaard_assignment\leaderboard.h(11) : see declaration of 'Node'
+                 c:\users\conor\documents\visual studio 2012\projects\leaderboaard_assignment\leaderboaard_assignment\leaderboard.h(11) : see declaration of 'Node'
+     1>c:\users\conor\documents\visual studio 2012\projects\leaderboaard_assignment\leaderboaard_assignment\leaderboard.h(33): warning C4099: 'Node' : type name first seen using 'class' now seen using 'struct'
+                 c:\users\conor\documents\visual studio 2012\projects\leaderboaard_assignment\leaderboaard_assignment\leaderboard.h(11) : see declaration of 'Node'
+                 c:\users\conor\documents\visual studio 2012\projects\leaderboaard_assignment\leaderboaard_assignment\leaderboard.h(11) : see declaration of 'Node'
+                 c:\users\conor\documents\visual studio 2012\projects\leaderboaard_assignment\leaderboaard_assignment\leaderboard.h(11) : see declaration of 'Node'
+     1>c:\users\conor\documents\visual studio 2012\projects\leaderboaard_assignment\leaderboaard_assignment\leaderboard.h(34): warning C4099: 'Node' : type name first seen using 'class' now seen using 'struct'
+                 c:\users\conor\documents\visual studio 2012\projects\leaderboaard_assignment\leaderboaard_assignment\leaderboard.h(11) : see declaration of 'Node'
+     1>c:\users\conor\documents\visual studio 2012\projects\leaderboaard_assignment\leaderboaard_assignment\leaderboard.cpp(232): warning C4099: 'Node' : type name first seen using 'class' now seen using 'struct'
+                 c:\users\conor\documents\visual studio 2012\projects\leaderboaard_assignment\leaderboaard_assignment\leaderboard.h(11) : see declaration of 'Node'
+                 c:\users\conor\documents\visual studio 2012\projects\leaderboaard_assignment\leaderboaard_assignment\leaderboard.h(11) : see declaration of 'Node'
+                 c:\users\conor\documents\visual studio 2012\projects\leaderboaard_assignment\leaderboaard_assignment\leaderboard.h(11) : see declaration of 'Node'
+     1>c:\users\conor\documents\visual studio 2012\projects\leaderboaard_assignment\leaderboaard_assignment\leaderboard.cpp(234): warning C4099: 'Node' : type name first seen using 'class' now seen using 'struct'
+                 c:\users\conor\documents\visual studio 2012\projects\leaderboaard_assignment\leaderboaard_assignment\leaderboard.h(11) : see declaration of 'Node'
+     1>c:\users\conor\documents\visual studio 2012\projects\leaderboaard_assignment\leaderboaard_assignment\leaderboard.cpp(235): warning C4099: 'Node' : type name first seen using 'class' now seen using 'struct'
+                 c:\users\conor\documents\visual studio 2012\projects\leaderboaard_assignment\leaderboaard_assignment\leaderboard.h(11) : see declaration of 'Node'
+     1>c:\users\conor\documents\visual studio 2012\projects\leaderboaard_assignment\leaderboaard_assignment\leaderboard.cpp(270): warning C4099: 'Node' : type name first seen using 'class' now seen using 'struct'
+                 c:\users\conor\documents\visual studio 2012\projects\leaderboaard_assignment\leaderboaard_assignment\leaderboard.h(11) : see declaration of 'Node'
+                 c:\users\conor\documents\visual studio 2012\projects\leaderboaard_assignment\leaderboaard_assignment\leaderboard.h(11) : see declaration of 'Node'
+                 c:\users\conor\documents\visual studio 2012\projects\leaderboaard_assignment\leaderboaard_assignment\leaderboard.h(11) : see declaration of 'Node'
+     1>c:\users\conor\documents\visual studio 2012\projects\leaderboaard_assignment\leaderboaard_assignment\leaderboard.cpp(272): warning C4099: 'Node' : type name first seen using 'class' now seen using 'struct'
+                 c:\users\conor\documents\visual studio 2012\projects\leaderboaard_assignment\leaderboaard_assignment\leaderboard.h(11) : see declaration of 'Node'
+     1>c:\users\conor\documents\visual studio 2012\projects\leaderboaard_assignment\leaderboaard_assignment\leaderboard.cpp(297): warning C4099: 'Node' : type name first seen using 'class' now seen using 'struct'
+                 c:\users\conor\documents\visual studio 2012\projects\leaderboaard_assignment\leaderboaard_assignment\leaderboard.h(11) : see declaration of 'Node'
+     1>c:\users\conor\documents\visual studio 2012\projects\leaderboaard_assignment\leaderboaard_assignment\leaderboard.cpp(299): warning C4099: 'Node' : type name first seen using 'class' now seen using 'struct'
+                 c:\users\conor\documents\visual studio 2012\projects\leaderboaard_assignment\leaderboaard_assignment\leaderboard.h(11) : see declaration of 'Node'
+     1>c:\users\conor\documents\visual studio 2012\projects\leaderboaard_assignment\leaderboaard_assignment\leaderboard.cpp(300): warning C4099: 'Node' : type name first seen using 'class' now seen using 'struct'
+                 c:\users\conor\documents\visual studio 2012\projects\leaderboaard_assignment\leaderboaard_assignment\leaderboard.h(11) : see declaration of 'Node'
+     1>c:\users\conor\documents\visual studio 2012\projects\leaderboaard_assignment\leaderboaard_assignment\leaderboard.cpp(301): warning C4099: 'Node' : type name first seen using 'class' now seen using 'struct'
+                 c:\users\conor\documents\visual studio 2012\projects\leaderboaard_assignment\leaderboaard_assignment\leaderboard.h(11) : see declaration of 'Node'
        Link:
-         D:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Conor\documents\visual studio 2012\Projects\Approach_Two\Debug\Approach_Two.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Conor\documents\visual studio 2012\Projects\Approach_Two\Debug\Approach_Two.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Conor\documents\visual studio 2012\Projects\Approach_Two\Debug\Approach_Two.lib" /MACHINE:X86 Debug\leaderBoard.obj
+         D:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Conor\Documents\Visual Studio 2012\Projects\LeaderBoaard_Assignment\LeaderBoaard_Assignment\Debug\Approach_Two.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Conor\Documents\Visual Studio 2012\Projects\LeaderBoaard_Assignment\LeaderBoaard_Assignment\Debug\Approach_Two.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Conor\Documents\Visual Studio 2012\Projects\LeaderBoaard_Assignment\LeaderBoaard_Assignment\Debug\Approach_Two.lib" /MACHINE:X86 Debug\leaderBoard.obj
          Debug\player.obj
          Debug\Source.obj
-         Approach_Two.vcxproj -> C:\Users\Conor\documents\visual studio 2012\Projects\Approach_Two\Debug\Approach_Two.exe
-     1>Done Building Project "C:\Users\Conor\documents\visual studio 2012\Projects\Approach_Two\Approach_Two\Approach_Two.vcxproj" (Build target(s)).
+         Approach_Two.vcxproj -> C:\Users\Conor\Documents\Visual Studio 2012\Projects\LeaderBoaard_Assignment\LeaderBoaard_Assignment\Debug\Approach_Two.exe
+     1>Done Building Project "C:\Users\Conor\Documents\Visual Studio 2012\Projects\LeaderBoaard_Assignment\LeaderBoaard_Assignment\Approach_Two.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:01.71
+Time Elapsed 00:00:01.78

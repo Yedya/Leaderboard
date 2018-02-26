@@ -1,6 +1,7 @@
 #include "player.h"
 #include "leaderBoard.h"
 #include <iostream>
+#include <algorithm>
 #include <string>
 #include <map>
 using namespace std;
@@ -9,64 +10,119 @@ using namespace std;
 
 leaderBoard::leaderBoard()
 {
+	head = NULL;
+}
+
+
+
+void leaderBoard::printList() const
+{
+
+	Node* curr = head;
+	while(curr!=NULL)
+	{
+		cout << "\n    " <<endl;
+		cout << "Position # " << curr->pos  <<endl;
+		cout << "Name " << curr->name <<endl;
+		cout << "Score " << curr->score <<endl;
+		cout << "\n    " <<endl;
+		curr = curr->next;
+	}
 
 }
-	/*
-		Time : 0(N)
-		Space: 0(N) 
-	*/
-void leaderBoard::updateLeaderBoard(Node **head,player &playerObj,int &newScore)
+
+
+/*
+	Time : 0(1)
+	Space: 0(1) 
+*/
+void leaderBoard::updatePlayerList(player &playerObj,int &newScore)
+{
+	std::map <string, int>::iterator mainItr;
+	int updatedScore =0;
+	if(playerObj.getLeaderBoardStatus() && playerObj.getPlayerScore()>newScore) return;
+
+	else if(playerObj.getLeaderBoardStatus() && playerObj.getPlayerScore()<newScore)
+	{
+		//Update our player's new score in our map.
+		mainItr = mapOfPlayers.find(playerObj.getPlayerName());
+		mainItr->second=newScore;
+
+		updatedScore =mainItr->second;
+		updateLeaderBoard(playerObj,updatedScore);	
+	}
+	else
+	{
+		playerObj.setScore(newScore);
+		mapOfPlayers.insert(std::make_pair(playerObj.getPlayerName(),newScore));
+
+		mainItr = mapOfPlayers.find(playerObj.getPlayerName());
+		updatedScore= mainItr->second;
+		updateLeaderBoard(playerObj,updatedScore);
+		return;
+	}
+
+}
+
+
+/*
+	Time : 0(log n)
+	Space: 0(log n)
+*/
+void leaderBoard::updateLeaderBoard(player &playerObj,int &newScore)
 {
     int pos = 1;
-    Node *curr = *head; 
-    Node *newNode = new Node;
+    Node *curr = head; 
 
     //If the player is already in the leaderboard
-    if(playerObj.getLeaderBoardStatus())
+	if(playerObj.getLeaderBoardStatus() && playerObj.getPlayerScore()<newScore)
     {
-        //And their current score is less than the their new score
-        if(playerObj.getPlayerScore()<newScore)
-        {
-           //Remove Duplicate
-           removeDuplicatePlayers(&curr,playerObj);
-        }
-        else
-        {
-            //If they already have a higher score,exit the function
-            return;
-        }
+		while(curr!=NULL)
+		{
+			if(curr->name==playerObj.getPlayerName())
+			{
+				curr->score=newScore;
+				cout << "Merge Sort" << endl;
+				MergeSort(&head);
+				return ;	
+			}
+			curr= curr->next;
+		}
     }
-    
-    //If the player is the intial player/ if the list is empty
-    if(*head==NULL)
+
+
+    if(head==NULL)
     {
-            playerObj.setScore(newScore);
-            playerObj.setLeaderBoardStatus(true);
+			Node *newNode =  new Node;
             newNode->score  = playerObj.getPlayerScore();
             newNode->name =  playerObj.getPlayerName();
+			playerObj.setLeaderBoardStatus(true);
 			newNode->pos = 1;
 
             newNode->next = NULL;
             newNode->prev = NULL;
-            (*head)  = newNode;
+            head = newNode;
             return;
     }
         
-    //If the new score is greater than the head, and the player isn't in the leaderboard,insert the player at front of the list and set it to be the head
+    //If the new score is greater than the head, and the player isn't in the leaderboard
     if(newScore>curr->score && !playerObj.getLeaderBoardStatus())
     {   
-        playerObj.setScore(newScore);
-        playerObj.setLeaderBoardStatus(true);
+		Node *newNode =  new Node;
         newNode->score  = playerObj.getPlayerScore();
         newNode->name =  playerObj.getPlayerName();
+		playerObj.setLeaderBoardStatus(true);
 		newNode->pos = 1;
         newNode->next = curr;
+		//insert the player at front of the list  
         curr->prev = newNode;
         newNode->prev = NULL;
         
-        (*head) = newNode;
-        curr = (*head);
+		//set it to be the head
+        head = newNode;
+        curr = head;
         return;
+		
     }
 
     else
@@ -83,6 +139,7 @@ void leaderBoard::updateLeaderBoard(Node **head,player &playerObj,int &newScore)
             playerObj.setScore(newScore);
             playerObj.setLeaderBoardStatus(true);
 
+			Node *newNode =  new Node;
             newNode->score  = playerObj.getPlayerScore();
             newNode->name =  playerObj.getPlayerName();
             newNode->next = curr->next;
@@ -100,78 +157,24 @@ void leaderBoard::updateLeaderBoard(Node **head,player &playerObj,int &newScore)
 
             curr->next = newNode;
 			curr->next->prev=newNode;
-            curr = (*head);
+            curr = head;
         }
-		else
-		{
-			newNode->score  = newScore;
-            newNode->name =  playerObj.getPlayerName();
-			newNode->next = curr->next;
-			newNode->prev = curr->prev;
-			curr->prev = newNode;
-			curr->next=newNode;
-
-			Node **tempPos = &curr;
-			pos = (*tempPos)->pos;
-			newNode->pos=pos+1;
-			if(curr->next!=NULL)
-			{
-				Node *tempPo2s = curr->next;
-				tempPo2s->pos = pos+2;
-			}
-
-			curr->pos = pos;
-
-		}
     }
 }
 
-
-	/*
-		Time : 0(N)
-		Space: 0(1) 
-	*/
-void leaderBoard::removeDuplicatePlayers(Node **head,player &playerObj)
-{			
-			Node *curr =  (*head);
-			if(playerObj.getPlayerName()==curr->name)
-			{	
-				Node *temp =curr;
-				//Tentative joining of the list list
-				curr = curr->next;
-				curr->prev=NULL;
-				delete temp;
-			}
-			while(curr->next!=NULL)
-			{
-				if(curr->next->name==playerObj.getPlayerName() )
-				{	
-					Node *temp =curr->next;
-					//Tentative joining of the list list
-					curr->next= curr->next->next;
-					delete temp;
-					return;
-				}
-				else
-				{
-					curr = curr->next;
-				}
-			}
-}
-
-
-	/*
-		Time : 0(N)
-		Space: 0(1) 
-	*/
-void leaderBoard::getSpecificPlayerScore(Node **head,player &playerObj) const
+/*
+	Time : 0(N)
+	Space: 0(1) 
+*/
+void leaderBoard::getSpecificPlayerScore(player &playerObj) const
 {
-	Node *curr =  (*head);
+	Node *curr =  head;
 	while(curr!=NULL)
 	{
 		if(curr->name==playerObj.getPlayerName())
 		{
 			cout << "Score For " << curr->name   << " is : " << playerObj.getPlayerScore() <<endl;
+			cout << "His position is   " << curr->pos   << endl;
 			break;
 		}
 		curr=curr->next;
@@ -179,31 +182,148 @@ void leaderBoard::getSpecificPlayerScore(Node **head,player &playerObj) const
 }
 
 
-	/*
-		Time : 0(N)
-		Space: 0(1) 
-	*/
-void leaderBoard::getScoresWithinRangeInclusive(Node **head,int from,int to)
+/*
+	Time : 0(N)
+	Space: 0(1) 
+*/
+void leaderBoard::getScoresWithinRangeInclusive(int from,int to)
 {
-	Node *curr = (*head);
-	
-	while(curr->next!=NULL)
+	if(from<=0|| to<=0  || to> getListLength()|| from> getListLength()-1) 
 	{
-		if(curr->pos==from)
-		{
-			cout << "Position # " << curr->pos  <<endl;
-			cout << "Name " << curr->name <<endl;
-			cout << "Score " << curr->score <<endl;
-		}
-		if(curr->pos==to+1)
-		{
-			break;
-		}
-		curr = curr->next;
+		cout << "Please Enter a valid position in the leaderboard!" <<endl;
+		return;
 	}
 
+	Node *curr = head;
+	for(int i =0;i<from-1;i++)
+    {
+        curr= curr->next;
+    }
 
+	while(curr->pos<=to+1 && curr->next!=NULL)
+    {
+		cout << "\n" <<endl;
+        cout << "Position: " << curr->pos <<endl;
+        cout << "Player Name " << curr->name << endl;
+        cout << "Player Score " << curr->score << endl;
+        cout << "\n" <<endl;
+        
+        curr= curr->next;
+    }
+	cout << "\n" <<endl;
+    cout << "Position: " << curr->pos <<endl;
+    cout << "Player Name " << curr->name << endl;
+    cout << "Player Score " << curr->score << endl;
+    cout << "\n" <<endl;
+}
 
+/*
+	Time : 0(N)
+	Space: 0(N) 
+*/
+void leaderBoard::FrontBackSplit(struct Node* source,struct Node** frontRef, struct Node** backRef)         
+{
+	struct Node* fast;
+	struct Node* slow;
+	if (source==NULL || source->next==NULL)
+	{
+		/* length < 2 cases */
+		*frontRef = source;
+		*backRef = NULL;
+	}
+	else
+	{
+		slow = source;
+		fast = source->next;
+ 
+		/* Advance 'fast' two nodes, and advance 'slow' one node */
+		while (fast != NULL)
+		{
+			fast = fast->next;
+			if (fast != NULL)
+			{
+			slow = slow->next;
+			fast = fast->next;
+			}
+		}
+ 
+	/* 'slow' is before the midpoint in the list, so split it in two
+		at that point. */
+	*frontRef = source;
+	*backRef = slow->next;
+	slow->next = NULL;
+	}
+}
 
+/*
+	Time : 0(N)
+	Space: 0(N) 
+*/
+struct Node* leaderBoard::SortedMerge(struct Node* a, struct Node* b)
+{
+  struct Node* result = NULL;
+  /* Base cases */
+  if (a == NULL)
+     return(b);
+  else if (b==NULL)
+     return(a);
+ 
+  /* Pick either a or b, and recur */
+  if (a->score >= b->score)
+  {
+     result = a;
+     result->next = SortedMerge(a->next, b);
+  }
+  else
+  {
+     result = b;
+     result->next = SortedMerge(a, b->next);
+  }
+  return(result);
+}
 
+/*
+	Time : 0(log n)
+	Space: 0(N) 
+*/
+void leaderBoard::MergeSort(struct Node** headRef)
+{
+  struct Node* head = *headRef;
+  struct Node* a;
+  struct Node* b;
+ 
+  /* Base case -- length 0 or 1 */
+  if ((head == NULL) || (head->next == NULL))
+  {
+    return;
+  }
+ 
+  /* Split head into 'a' and 'b' sublists */
+  FrontBackSplit(head, &a, &b); 
+ 
+  /* Recursively sort the sublists */
+  MergeSort(&a);
+  MergeSort(&b);
+ 
+  /* answer = merge the two sorted lists together */
+  *headRef = SortedMerge(a, b);
+}
+
+/*
+	Time : 0(N)
+	Space: 0(1) 
+*/
+int leaderBoard::getListLength() const
+{
+	int lenght=0;
+	Node *curr = head;
+
+	while(curr!=NULL)
+	{
+		
+		lenght+=1;
+		curr=curr->next;
+	}
+	return lenght;
+	
 }
